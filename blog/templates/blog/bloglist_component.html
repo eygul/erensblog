@@ -1,0 +1,68 @@
+<style>
+  ul {
+  list-style-type: none;
+}
+  a {
+    text-decoration:none;
+    color:white;
+  }
+  a:hover{
+    color:yellow;
+  }
+  .topics__header {
+    text-align: center;
+  }
+
+  h1, h2, h3, p {
+    color: white;
+  }
+  .box{
+        padding: 15px;
+        overflow-y: auto;
+        height: 400px;
+    }
+    /* Chrome, Edge and Safari */
+*::-webkit-scrollbar {
+  height: 3px;
+  width: 3px;
+}
+*::-webkit-scrollbar-track {
+  border-radius: 3px;
+  background-color: #2D2D2D;
+}
+
+*::-webkit-scrollbar-track:hover {
+  background-color: #2D2D2D;
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: #2D2D2D;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: #62A34B;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #62A34B;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: #62A34B;
+}
+</style>
+
+<div class="topics">
+    <div class="topics__header">
+      <h3>All Blogs</h3>
+      <hr>
+    </div>
+    <ul class="topics__list box">
+      {% for blog in blogs%}
+      <li>
+        <h5><a href="{% url 'blog' blog.id %}" class="active">{{blog.title}}</a></h5>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>

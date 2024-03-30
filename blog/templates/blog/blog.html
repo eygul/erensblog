@@ -1,0 +1,50 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<style>
+    .home-container{
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+    }
+    #bloglist_component{
+        margin-top: 20px;
+    }
+    #blogs_component{
+        margin-top: 20px;
+    }
+    .content{
+        text-align: center;
+    }
+    .color{
+        color: white;
+    }
+    .center{
+        text-align: center;
+    }
+    img {
+    max-width: 100%;
+    height: auto;
+}
+</style>
+
+<div class="home-container">
+
+    <div id="bloglist_component">
+        {% include 'blog/bloglist_component.html' %}
+    </div>
+    <div id="blogs_component">
+        <div id="blogs_component">
+            <h1 class='content'>{{ blog.title }}</h1>
+            <div class="color">{{ blog.content|safe}}</div>
+            <div class="color">{{blog.author}}</div>
+            <div class="color">{{blog.date_posted}}</div>
+        </div>
+    
+    </div>
+   
+</div>
+
+
+
+{% endblock content %}
