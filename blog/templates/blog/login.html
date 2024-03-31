@@ -1,58 +1,46 @@
 {% extends 'main.html' %}
 {% block content %}
-<style>
-    h1, h2, h3, p {
-    color: white;
-  }
+
 </style>
-    <main class="auth layout">
-      <div class="container">
-        <div class="layout__box">
-          <div class="layout__boxHeader">
-            <div class="layout__boxTitle">
-              <h3>Login</h3>
-            </div>
-          </div>
-          <div class="layout__body">
-
-            <form class="form" method="POST" action="">
+<section class="vh-100" style="background-color: #2d2d2d;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+            <h3 class="mb-5">Sign in</h3>
+          {% if messages %}
+          <ul class="messages">
+              {% for message in messages %}
+              <p style="color:red">{{ message }}</p>
+              {% endfor %}
+          {% endif %}
+          </ul>
+            <form method="POST" action="">
               {% csrf_token %}
-              <div class="form__group form__group">
-                <label for="room_name">Email</label>
-                <input id="username" name="email" type="text" placeholder="Enter username..." />
+              <div class="form-outline mb-4">
+                  <input type="text" name="username" id="typeEmailX-2" class="form-control form-control-lg" />
+                  <label class="form-label" for="typeEmailX-2">Username</label>
               </div>
-              <div class="form__group">
-                <label for="password">Password</label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
-                />
+          
+              <div class="form-outline mb-4">
+                  <input type="password" name="password" id="typePasswordX-2" class="form-control form-control-lg" />
+                  <label class="form-label" for="typePasswordX-2">Password</label>
               </div>
-
-              <button class="btn btn--main bg-light" type="submit">
-                <svg
-                  version="1.1"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="32"
-                  height="32"
-                  viewBox="0 0 32 32"
-                >
-                  <title>lock</title>
-                  <path
-                    d="M27 12h-1v-2c0-5.514-4.486-10-10-10s-10 4.486-10 10v2h-1c-0.553 0-1 0.447-1 1v18c0 0.553 0.447 1 1 1h22c0.553 0 1-0.447 1-1v-18c0-0.553-0.447-1-1-1zM8 10c0-4.411 3.589-8 8-8s8 3.589 8 8v2h-16v-2zM26 30h-20v-16h20v16z"
-                  ></path>
-                  <path
-                    d="M15 21.694v4.306h2v-4.306c0.587-0.348 1-0.961 1-1.694 0-1.105-0.895-2-2-2s-2 0.895-2 2c0 0.732 0.413 1.345 1 1.694z"
-                  ></path>
-                </svg>
-
-                Login
-              </button>
-            </form>
+          
+              <!-- Checkbox -->
+              <div class="form-check d-flex justify-content-start mb-4">
+                  <input class="form-check-input" type="checkbox" value="" id="form1Example3" />
+                  <label class="form-check-label" for="form1Example3"> Remember password </label>
+              </div>
+          
+              <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+          </form>
           </div>
         </div>
       </div>
-    </main>
+    </div>
+  </div>
+</section>
+
 {% endblock content %}
