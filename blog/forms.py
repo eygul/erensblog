@@ -1,6 +1,8 @@
-from django.contrib.auth.forms import UserCreationForm
-
-class MyUserCreationForm(UserCreationForm):
+from django import forms
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from .models import Blog
+class BlogForm(forms.ModelForm):
+    content = forms.CharField(widget=CKEditorUploadingWidget())
     class Meta:
-        model = User
-        fields = ['name', 'username', 'email', 'password1', 'password2']
+        model = Blog
+        fields = '__all__'

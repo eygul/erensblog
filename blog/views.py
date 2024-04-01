@@ -6,6 +6,14 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
 from .models import Blog
+from django.urls import reverse
+from django.views.generic.edit import CreateView
+from django.contrib.messages.views import SuccessMessageMixin
+from .forms import BlogForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView
+from django.views.generic import FormView
+from django.urls import reverse_lazy
 
 
 def home(request, blog_id=None):
@@ -45,3 +53,13 @@ def loginpage(request):
 def logoutpage(request):
     logout(request)
     return redirect('home')
+
+class AddBlog(LoginRequiredMixin, SuccessMessageMixin, FormView):
+    template_name = 'blog/addblog.html'
+    form_class = BlogForm
+    success_message = "Added Successfully"
+    success_url = reverse_lazy('addblog')
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)

@@ -1,5 +1,5 @@
 {% extends 'main.html' %}
-
+{% block title %}{{blog.title}}{% endblock title%}
 {% block content %}
 
 <style>
@@ -27,7 +27,6 @@
     height: auto;
 }
 </style>
-
 <div class="home-container">
 
     <div id="bloglist_component">

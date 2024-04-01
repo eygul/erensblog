@@ -8,28 +8,64 @@
 </head>
 <body>
 
-    <style>
-        #navsearch {
-            margin-top: 20px;
-        }
-        body {
-            background-color: #2d2d2d;
-        }
-        .form-control{
-            background-color: #2d2d2d;
-            color: white;
-        }
-        hr{
-            background-color: white;
-        }
-        a {
-            text-decoration:none;
-            color:white;
-        }
-        a:hover{
-            color:yellow;
-        }
-    </style>
+<style>
+            /* Chrome, Edge and Safari */
+*::-webkit-scrollbar {
+  height: 3px;
+  width: 3px;
+}
+*::-webkit-scrollbar-track {
+  border-radius: 3px;
+  background-color: #2D2D2D;
+}
+
+*::-webkit-scrollbar-track:hover {
+  background-color: #2D2D2D;
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: #2D2D2D;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: #62A34B;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #62A34B;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: #62A34B;
+}
+#navsearch {
+    margin-top: 20px;
+}
+body {
+    background-color: #2d2d2d;
+}
+.form-control{
+    background-color: #2d2d2d;
+    color: white;
+}
+hr{
+    background-color: white;
+}
+a {
+    text-decoration:none;
+    color:white;
+}
+a:hover{
+    color:yellow;
+}
+.logged-in-user {
+  background-color: #62A34B;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+</style>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
         <div class="container-fluid">
@@ -39,15 +75,20 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav">
-                    <a href="{% url 'home' %}" class="nav-item nav-link active">Home</a>
-                </div>
-                <div class="navbar-nav">
                     {% if request.user.is_authenticated %}
-                    <a href="{% url 'logout' %}" class="nav-item nav-link active">Logout</a>
+                    <span class="nav-item nav-link active logged-in-user">Logged in as {{request.user.username}} |<a href="{% url 'logout' %}" class="nav-item active">Logout</a> </span>
                     {% else %}
                     <a href="{% url 'login' %}" class="nav-item nav-link active">Login</a>
                     {% endif %}
                 </div>
+                <div class="navbar-nav">
+                    <a href="{% url 'home' %}" class="nav-item nav-link active">All Blogs</a>
+                </div>
+                {% if request.user.is_authenticated %}
+                <div class="navbar-nav">
+                    <a href="{% url 'addblog' %}" class="nav-item nav-link active">Add Blog</a>
+                </div>
+                {% endif %}
                 <div class="navbar-nav">
                     <a href="{% url 'home' %}" class="nav-item nav-link active">Contact</a>
                 </div>
