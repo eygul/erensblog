@@ -1,31 +1,52 @@
 <style>
-  ul {
-  list-style-type: none;
-}
-  .topics__header {
-    text-align: center;
+  .sidebar {
+      background-color: #3c3c3c;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      color: #ffffff;
   }
 
-  h1, h2, h3, p {
-    color: white;
+  .sidebar h3 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      color: #62A34B;
+      font-size: 1.5rem;
+      text-align: center;
   }
-  .box{
-        padding: 15px;
-        overflow-y: auto;
-        height: 400px;
-    }
+
+  .sidebar ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+  }
+
+  .sidebar li {
+      margin-bottom: 10px;
+  }
+
+  .sidebar a {
+      text-decoration: none;
+      color: #ffffff;
+      font-size: 1.1rem;
+      display: block;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+  }
+
+  .sidebar a:hover {
+      background-color: #62A34B;
+  }
 </style>
 
-<div class="topics">
-    <div class="topics__header">
-      <h3>All Blogs</h3>
-      <hr>
-    </div>
-    <ul class="topics__list box">
-      {% for blog in blogs%}
+<div class="sidebar">
+  <h3>All Blogs</h3>
+  <ul>
+      {% for blog in blogs %}
       <li>
-        <h5><a href="{% url 'blog' blog.id %}" class="active">{{blog.title}}</a></h5>
+          <a href="{% url 'blog' blog.id %}" class="active">{{ blog.title }}</a>
       </li>
       {% endfor %}
-    </ul>
-  </div>
+  </ul>
+</div>

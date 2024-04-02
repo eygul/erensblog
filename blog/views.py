@@ -7,7 +7,7 @@ from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
 from .models import Blog
 from django.urls import reverse
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.messages.views import SuccessMessageMixin
 from .forms import BlogForm
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -63,3 +63,25 @@ class AddBlog(LoginRequiredMixin, SuccessMessageMixin, FormView):
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
+    
+@login_required(login_url='login')
+def deleteBlog(request, blog_id):
+    blog= Blog.objects.get(pk=blog_id)
+    if request.method == 'POST':
+        blog.delete()
+        return redirect('home')
+    return render(request, 'blog/delete.html', {'obj':blog})
+
+class UpdateBlog(LoginRequiredMixin, SuccessMessageMixin, UpdateView,):
+    model= Blog
+    form_class = BlogForm
+    template_name = 'blog/updateblog.html'
+    success_message = "Added Successfully"
+    success_url = reverse_lazy('addblog')
+    
+    def get_object(self, queryset=None):
+        blog_id = self.kwargs.get('blog_id')
+        return get_object_or_404(Blog, pk=blog_id)
+
+    def get_success_url(self):
+        return reverse_lazy('home')
