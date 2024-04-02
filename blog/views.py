@@ -12,12 +12,12 @@ from django.contrib.messages.views import SuccessMessageMixin
 from .forms import BlogForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
-from django.views.generic import FormView
+from django.views.generic import FormView, ListView
 from django.urls import reverse_lazy
 
 
 def home(request, blog_id=None):
-    blogs = Blog.objects.all()
+    blogs = Blog.objects.all().order_by('-date_posted')
     context = {'blogs': blogs}
     return render(request, 'blog/home.html', context)
 
@@ -26,7 +26,7 @@ def blog(request, blog_id):
         blog = Blog.objects.get(pk=blog_id)
     except Blog.DoesNotExist:
         return HttpResponse("This blog does not exist.", status=404)
-    blogs = Blog.objects.all()
+    blogs = Blog.objects.all().order_by('-date_posted')
     context = {'blog': blog, 'blogs':blogs}
     return render(request, 'blog/blog.html', context)
 
@@ -85,3 +85,14 @@ class UpdateBlog(LoginRequiredMixin, SuccessMessageMixin, UpdateView,):
 
     def get_success_url(self):
         return reverse_lazy('home')
+
+class SearchResultsView(ListView):
+    model = Blog
+    template_name = "blog/search.html"
+
+    def get_queryset(self):  # new
+        query = self.request.GET.get("q")
+        object_list = Blog.objects.filter(
+            Q(title__icontains=query)
+        )
+        return object_list

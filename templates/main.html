@@ -93,10 +93,10 @@ a:hover{
                     <a href="http://www.erenyilmazgul.com/" class="nav-item nav-link active">About Me</a>
                 </div>
                 <div class="navbar-nav ms-auto">
-                    <form method="POST" action="{% url 'home' %}" class="header__search">
+                    <form method="GET" action="{% url 'search' %}" class="header__search">
                         <div class="input-group" id="navsearch">
                             <input name='q' type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                            <button type="button" class="btn btn-outline-light" data-mdb-ripple-init>search</button>
+                            <button type="submit" class="btn btn-outline-light" data-mdb-ripple-init>search</button>
                           </div>
                       </form>
                 </div>
