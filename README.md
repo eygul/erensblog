@@ -32,7 +32,8 @@
   py manage.py  createsuperuser
   ```
 
--Note #1: For Linux or MacOS, use "python manage.py" instead of "py manage.py".
--Note #2: This project currently uses django-ckeditor package which is the CKEditor 4. It is currently outdated, and may cause problems. 
+Note #1: For Linux or MacOS, use "python manage.py" instead of "py manage.py".
+
+Note #2: This project currently uses django-ckeditor package which is the CKEditor 4. It is currently outdated, and may cause problems. 
 I am not responsible in any way for any use of this project, and you can change your rich-text editor to a better oneif you would like. 
 It is also the reason why I will not be publishing this project live since I wanted to build this project to showcase my skills and not to use it in real life. 
