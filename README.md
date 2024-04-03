@@ -26,7 +26,7 @@
     ```
     py manage.py createsuperuser
     ```
-- Congratulations! Now you can run your local server the use the app locally by using the following command (for Windows):
+- Congratulations! Now you can run your local server to use the app locally by using the following command (for Windows):
 
   ```
   py manage.py  createsuperuser
