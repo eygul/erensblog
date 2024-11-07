@@ -29,7 +29,7 @@
 - Congratulations! Now you can run your local server to use the app locally by using the following command (for Windows):
 
   ```
-  py manage.py  runserver
+  py manage.py runserver
   ```
 
 Note #1: For Linux or MacOS, use "python manage.py" instead of "py manage.py".
